@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_httpauth import HTTPTokenAuth
-from utils.MongoDB import *
+from lib.MongoDB import *
 
 app = Flask(__name__)
 auth = HTTPTokenAuth(scheme='Bearer')
@@ -23,30 +23,55 @@ def verify_token(token):
 def home():
     return 'Hello, World!'
 
-@app.route('/collections', methods=['GET'])
+# /collections 1 -> *
+# [READ]
+@app.route('/api/collections', methods=['GET'])
 @auth.login_required
 def collections():
     collections = list_collections()
     return jsonify(collections)
 
-@app.route('/collection/<string:collection_name>', methods=['GET'])
+# /api/collection
+# [READ]
+@app.route('/api/collection', methods=['GET'])
 @auth.login_required
-def get_collection(collection_name):
+def read_collection():
+    collection_name = request.args.get('collection_name')
+    if not collection_name:
+        return jsonify({"error": "Missing 'collection_name' parameter"}), 400
+
     documents = read_collection(collection_name)
     return jsonify(documents)
 
-@app.route('/collection/<string:collection_name>', methods=['POST'])
+# [CREATE]
+@app.route('/api/collection', methods=['POST'])
 @auth.login_required
-def add_document(collection_name):
-    document = request.json
-    document_id = insert_document(collection_name, document)
-    return jsonify({'inserted_id': str(document_id)})
+def create_collection():
+    collection_name = request.args.get('collection_name')
+    if not collection_name:
+        return jsonify({"error": "Missing 'collection_name' parameter"}), 400
+    document_id = create_collection(collection_name)
+    return jsonify({'inserted_collection': str(document_id)})
 
+# [UPDATE]
+@app.route('/api/collection', methods=['PUT'])
+@auth.login_required
+def update_collection():
+    collection_name = request.args.get('collection_name')
+    if not collection_name:
+        return jsonify({"error": "Missing 'collection_name' parameter"}), 400
+    
+    document_id = create_collection(collection_name)
+    return jsonify({'inserted_collection': str(document_id)})
+
+# [DELETE]
+
+# /collection ?NAME 1 -> *
 @app.route('/collection/<string:collection_name>/bulk', methods=['POST'])
 @auth.login_required
 def add_documents(collection_name):
     documents = request.json
-    document_ids = insert_documents(collection_name, documents)
+    document_ids = create_documents(collection_name, documents)
     return jsonify({'inserted_ids': [str(doc_id) for doc_id in document_ids]})
 
 if __name__ == '__main__':
