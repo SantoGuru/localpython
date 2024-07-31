@@ -117,7 +117,7 @@ client_schema = {
   }
 }
 
-def validator(data):
+def validar(data):
     try:
         validate(instance=data, schema=client_schema)
     except ValidationError as e:
