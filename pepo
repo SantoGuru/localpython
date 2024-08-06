@@ -1,0 +1,79 @@
+[
+  {
+    "id": 0,
+    "full_name": "string",
+    "first_name": "string",
+    "last_name": "string",
+    "phone": "string",
+    "ddd": "string",
+    "created_at": "2024-08-05T17:32:11.3462",
+    "live_chat": "string",
+    "referrer": "string",
+    "referral_count": "string",
+    "campaigns": "string",
+    "tags": "string",
+    "variables": "string",
+    "sequences": "string",
+
+    "NPS": [
+      {
+        "nps_order": 1,
+        "client_ID": "xxxxxxx",
+        "date_NPS": "YYYY-MM-DD",
+        "score": "string"
+      },
+      {
+        "nps_order": 2,
+        "client_ID": "xxxxxxx",
+        "date_NPS": "YYYY-MM-DD",
+        "score": "string"
+      }
+    ],
+
+    "inactives": [
+      {
+        "inactive_order": 1,
+        "client_ID": "xxxxxxx",
+        "date_inactive": "YYYY-MM-DD",
+        "response": "string",
+        "response_boolean": false,
+        "response_option": "xxxxx xxxxx xxxx xx xxxxxxx"
+      },
+      {
+        "inactive_order": 2,
+        "client_ID": "xxxxxxx",
+        "date_inactive": "YYYY-MM-DD",
+        "response_boolean": false,
+        "response_option": "xxxxx xxxxx xxxx xx xxxxxxx"
+      }
+    ],
+
+    "cashback": [
+      {
+        "cashback_order": 1,
+        "client_ID": "xxxxxxx",
+        "cashback_ID": "xxxxxxxxxxx",
+        "cashback_origin": "xxxxxxxxxx",
+        "cashback_created_at": "YYYY-MM-DD",
+        "cashback_expire_date": "YYYY-MM-DD",
+        "cashback_value": 100.00,
+        "cashback_burned": true,
+        "cashback_burned_at": "YYYY-MM-DD",
+        "cashback_burned_origin": "xxxxxxxxxx"
+      },
+      {
+        "cashback_order": 2,
+        "client_ID": "xxxxxxx",
+        "cashback_ID": "xxxxxxxxxxx",
+        "cashback_origin": "xxxxxxxxxx",
+        "cashback_created_at": "YYYY-MM-DD",
+        "cashback_expire_date": "YYYY-MM-DD",
+        "cashback_value": 100.00,
+        "cashback_burned": false,
+        "cashback_burned_at": "YYYY-MM-DD",
+        "cashback_burned_origin": "xxxxxxxxxx"
+      }
+    ]
+
+  }
+]
